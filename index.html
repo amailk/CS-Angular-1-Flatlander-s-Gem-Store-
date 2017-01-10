@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html>
+<!-- run this module when the document loads. -->
+<html ng-app="store">
   <head>
     <link rel="stylesheet" type="text/css" href="bootstrp.min.css"/>
   </head>
-  <body>
+  <body ng-controller="StoreController as store">
+    <!-- ng controller = directive , controller name = storecontroller and store is alias-->
+    <!-- ng hide can be !store.product.soldOut but hide is better -->
+    <div ng-hide="store.product.soldOut">
+      <h1> {{store.product.name}} </h1>
+      <h2> ${{store.product.price}} </h2>
+      <p> {{store.product.description}} </p>
+      <button ng-show="store.product.canPurchase"> Add to Cart </button>
+    </div>
+
     <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
