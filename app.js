@@ -4,7 +4,7 @@
 
   app.controller('StoreController', function(){
     // product is a property of our controller
-    this.product = gem;
+    this.products = gems;
   });
 
   var gems = [

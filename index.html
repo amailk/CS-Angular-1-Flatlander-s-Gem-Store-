@@ -7,7 +7,7 @@
   <body ng-controller="StoreController as store">
     <!-- ng controller = directive , controller name = storecontroller and store is alias-->
     <!-- ng hide can be !store.product.soldOut but hide is better -->
-    <div ng-hide="store.product.soldOut">
+    <div ng-repeat="product in store.products">
       <h1> {{store.product.name}} </h1>
       <h2> ${{store.product.price}} </h2>
       <p> {{store.product.description}} </p>
