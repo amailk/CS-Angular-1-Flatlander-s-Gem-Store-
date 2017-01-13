@@ -2,19 +2,48 @@
 <!-- run this module when the document loads. -->
 <html ng-app="store">
   <head>
-    <link rel="stylesheet" type="text/css" href="bootstrp.min.css"/>
-  </head>
-  <body ng-controller="StoreController as store">
-    <!-- ng controller = directive , controller name = storecontroller and store is alias-->
-    <!-- ng hide can be !store.product.soldOut but hide is better -->
-    <div ng-repeat="product in store.products">
-      <h1> {{store.product.name}} </h1>
-      <h2> ${{store.product.price}} </h2>
-      <p> {{store.product.description}} </p>
-      <button ng-show="store.product.canPurchase"> Add to Cart </button>
-    </div>
-
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css"/>
     <script type="text/javascript" src="angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body class="container" ng-controller="StoreController as store">
+    <!-- ng controller = directive , controller name = storecontroller and store is alias-->
+    <!-- ng hide can be !store.product.soldOut but hide is better -->
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h3>
+          {{product.name}}
+          <em class="pull-right">{{product.price | currency}}</em>
+          <img ng-src="{{product.images[0].full}}"/>
+        </h3>
+        <section ng-init="tab = 1">
+          <ul class="nav nav-pills">
+            <li ng-class="{ active:tab === 1}">
+              <a href ng-click="tab = 1"> Description </a>
+            </li>
+            <li ng-class="{ active:tab === 2}">
+              <a href ng-click="tab = 2"> Specifications </a>
+            </li>
+            <li ng-class="{ active:tab === 3}">
+              <a href ng-click="tab = 3"> Reviews </a>
+            </li>
+          </ul>
+          {{tab}}
+        </section>
+        <div class="panel" ng-show="tab === 1">
+          <h4> Description </h4>
+          <p> {{product.description}}</p>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+          <h4> Specifications </h4>
+          <blockquote> None yet </blockquote>
+        </div>
+        <div class="panel" ng-show="tab === 3">
+          <h4> Reviews </h4>
+          <blockquote> None yet </blockquote>
+        </div>
+      </li>
+      <button ng-show="product.canPurchase"> Add to Cart </button>
+    </ul>
   </body>
 </html>
